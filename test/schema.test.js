@@ -83,4 +83,25 @@ describe("Joi", () => {
     });
     console.info(result);
   });
+
+  it("should create user schema", () => {
+    const createUserSchema = Joi.object({
+      id: Joi.string().required().max(100),
+      name: Joi.string().required().max(100),
+      address: Joi.object({
+        street: Joi.string().required().max(200),
+        city: Joi.string().required().max(100),
+        country: Joi.string().required().max(100),
+        zipCode: Joi.string().required().max(10),
+      }).required(),
+    });
+
+    const request = {};
+
+    const result = createUserSchema.validate(request, {
+      abortEarly: false,
+    });
+
+    console.info(result);
+  });
 });
