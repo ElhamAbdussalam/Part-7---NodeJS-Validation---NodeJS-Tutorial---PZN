@@ -26,4 +26,14 @@ describe("Joi", () => {
     const resultPrice = priceSchema.validate("1000");
     console.info(resultPrice);
   });
+
+  it("should can validate date", () => {
+    const birthDateSchema = Joi.date().required().max("now").min("01-01-1900");
+
+    const result = birthDateSchema.validate("01-01-1899");
+    console.info(result);
+
+    const result2 = birthDateSchema.validate("01-01-2000");
+    console.info(result2);
+  });
 });
