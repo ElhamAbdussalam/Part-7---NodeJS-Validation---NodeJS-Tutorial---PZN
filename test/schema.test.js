@@ -11,4 +11,19 @@ describe("Joi", () => {
       console.info(result.error);
     }
   });
+
+  it("should can validate type data", () => {
+    const usernameSchema = Joi.string().email().required();
+    const isAdminSchema = Joi.boolean().required();
+    const priceSchema = Joi.number().required().min(1000).max(1000000);
+
+    const resultUsername = usernameSchema.validate("eko");
+    console.info(resultUsername);
+
+    const resultIsAdmin = isAdminSchema.validate(true);
+    console.info(resultIsAdmin);
+
+    const resultPrice = priceSchema.validate("1000");
+    console.info(resultPrice);
+  });
 });
