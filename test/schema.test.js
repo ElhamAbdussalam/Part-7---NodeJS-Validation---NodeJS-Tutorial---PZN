@@ -27,13 +27,15 @@ describe("Joi", () => {
     console.info(resultPrice);
   });
 
-  it("should can validate date", () => {
+  it("should can validate date and get result", () => {
     const birthDateSchema = Joi.date().required().max("now").min("01-01-1900");
 
     const result = birthDateSchema.validate("01-01-1899");
     console.info(result);
+    console.info(result.error);
 
     const result2 = birthDateSchema.validate("01-01-2000");
     console.info(result2);
+    console.info(result2.error);
   });
 });
